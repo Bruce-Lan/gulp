@@ -7,14 +7,6 @@ html(lang="en")
     title BACKEND
     link(rel="stylesheet", href="../css/app.css")
   body
-    .wrapper
-      aside
-        header
-          .backend-logo
-        nav
-          ul
-            li
-              a(href='#') test
 
 
     script(src="./js/app.js")
