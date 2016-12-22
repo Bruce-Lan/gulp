@@ -1,17 +1,24 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
 
 $body-bg: #E2E9EB;
 $aside-bg: #3C4350;
 $top-block-bg: #4D535E;
 $title-block-bg: #F8F8F8;
 
+$font-default: #5E676B;
+
 
 
 // ============================== layout_開始 ==============================
 
 html,body{ height: 100%;}
+html{ font-size: 14px; }
 ul{ margin: 0; padding: 0;}
 body{
 	background: $aside-bg;
+	font-size: 1rem;
+	color: $font-default;
+	font-family:'Noto Sans TC',"Microsoft Jhenghei","微軟正黑體",Arial,Helvetica,sans-serif;
 }
 .wrapper{
     width: 100%;
