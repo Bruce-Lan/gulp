@@ -22,7 +22,7 @@ gulp.task('pug', () =>
 );
 
 gulp.task('sass', () =>
-  gulp.src('./src/sass/app.scss')
+  gulp.src('./src/sass/*.scss')
       .pipe(sourcemaps.init())
       .pipe(sass(gutil.env.production ? { outputStyle: 'compressed' } : {}))
       .on('error', notify.onError('Error: <%= error.message %>'))
@@ -60,7 +60,8 @@ gulp.task('js', ['babel'], () =>
         './bower_components/jquery/dist/jquery.js',
         './bower_components/tether/dist/js/tether.js',
         './bower_components/bootstrap/dist/js/bootstrap.js',
-        './temp/js/app.js'
+        './temp/js/app.js',
+        './src/js/bootstrap.js'
       ])
       .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
@@ -71,13 +72,19 @@ gulp.task('js', ['babel'], () =>
       .pipe(browserSync.reload({ stream: true }))
 );
 
+gulp.task('copy:img', () =>
+  gulp.src('./src/img/**/*')
+      .pipe(gulp.dest('./dist/img/'))
+      .pipe(notify('File: ./dist/img/<%= file.relative %> Copied!'))
+);
+
 gulp.task('copy:fonts', () =>
   gulp.src('./bower_components/font-awesome-sass/assets/fonts/**/*')
       .pipe(gulp.dest('./dist/fonts'))
       .pipe(notify('File: ./dist/fonts/<%= file.relative %> Copied!'))
 );
 
-gulp.task('copy', ['copy:fonts']);
+gulp.task('copy', ['copy:fonts', 'copy:img']);
 
 gulp.task('clean:temp', ['css', 'js'], () =>
   gulp.src('./temp')
@@ -101,6 +108,7 @@ gulp.task('watch', () => {
   gulp.watch('./src/pug/**/*.pug', ['pug']);
   gulp.watch('./src/sass/**/*.scss', ['css']);
   gulp.watch('./src/babel/**/*.js', ['js']);
+  gulp.watch('./src/img/**/*', ['copy:img']);
 });
 
 gulp.task('default', ['pug', 'css', 'js', 'copy', 'clean:temp']);
