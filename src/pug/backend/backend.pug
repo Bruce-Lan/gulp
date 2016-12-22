@@ -8,13 +8,13 @@ html(lang="en")
     link(rel="stylesheet", href="../css/app.css")
   body
     .wrapper
-      aside
-        header
-          .backend-logo
-        nav
-          ul
-            li
-              a(href='#') test
+      include partial/aside
+      .container
+        include partial/top-block
+        include partial/title-block
+        .main
+          //- 內容放main裡面
 
 
     script(src="./js/app.js")
+x
